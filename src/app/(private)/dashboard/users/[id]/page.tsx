@@ -8,14 +8,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { useAuthStore } from "@/store/authStore";
 
-type PageProps = {
-  params: {
-    id: string; // URL param /dashboard/users/:id
-  };
-}; 
+export default function UserDetailsPage({ params }: { params: { id: string } }) {
 
-
-export default function UserDetailsPage({ params }: PageProps) {
   const { id } = params;
 
   // Read all users from the store and find the one matching the id
