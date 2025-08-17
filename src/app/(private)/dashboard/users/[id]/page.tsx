@@ -10,11 +10,10 @@ import { useAuthStore } from "@/store/authStore";
 
 export default function UserDetailsPage({ params }: { params: { id: string } }) {
 
-  const { id } = params;
 
   // Read all users from the store and find the one matching the id
   const user = useAuthStore((s) => 
-    s.users.find((u) => u.id === id)
+    s.users.find((u) => u.id === params.id)
 );
 
   // If no user matches, show Next.js 404 Error
