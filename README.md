@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Dashboard App 
 
-## Getting Started
+This is a simple, client-side authentication dashboard app built with Next.js, Zustand, and React Hook Form. It includes user registration with OTP verification, a login/logout flow, protected routes and contact form handling.
 
-First, run the development server:
+----
+## Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Framework: Next.js
+- State Management: Zustand with `persist` for localStorage
+- Form Handling: react-hook-form
+- UI Library: shadcn/ui + Heroicons
+- Table: @tanstack/react-table
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+----
+## Authentication Flow (Client-side)
+- Register page accepts first/last name, email, password → generates OTP
+- OTP page verifies code → saves user and logs them in
+- Login page checks stored credentials
+- Logout clears state and redirects to login
+- Uses Zustand (`authStore`) to persist users and login state
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+----
+## Route Protection
+- All `/dashboard/*` routes are protected
+- Uses a hydration-safe client guard to prevent unauthorized access
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+----
+## State Management
+### `authStore.ts`
+Holds and persists:
+- `users[]`
+- `currentUser`
+- `isLoggedIn`
+- `pendingUser` + `pendingOtp`
+- Actions: `register`, `verifyOtp`, `login`, `logout`, `updateProfile`, `setAvatar`, `removeUser`
 
-## Learn More
+### `contactStore.ts`
+Stores submitted contact messages (`items[]`) and persists them locally.
 
-To learn more about Next.js, take a look at the following resources:
+----
+## Features Summary
+- Client-side OTP flow (no backend)
+- Zustand for state + localStorage persistence
+- Shadcn/Heroicons UI
+- Searchable user table with @tanstack/react-table
+- Contact form data stored locally
+- Fully protected dashboard routes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+----
+## Notes
+- This project does not use any backend or external database.
+- All data (users, login state, contact messages) is persisted in localStorage.
