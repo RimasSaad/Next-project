@@ -8,15 +8,16 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { useAuthStore } from "@/store/authStore";
 
-export default function UserDetailsPage({ params }: { params: { id: string } }) {
+interface PageProps {
+  params: {
+    id: string;
+  };
+}
 
-
+export default function UserDetailsPage({ params }: PageProps) {
   // Read all users from the store and find the one matching the id
-  const user = useAuthStore((s) => 
-    s.users.find((u) => u.id === params.id)
-);
+  const user = useAuthStore((s) => s.users.find((u) => u.id === params.id));
 
-  // If no user matches, show Next.js 404 Error
   if (!user) return notFound();
 
   return (
