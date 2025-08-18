@@ -33,7 +33,7 @@ export default function DashboardPage() {
 
       {/* Dashboard Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        {/* Total Users Card (wrapped with Link) */}
+        {/* Total Users Card */}
         <Link href="/dashboard/users">
           <Card className="p-4 hover:bg-gray-50 transition">
             <p className="flex items-center gap-2 text-gray-500 text-sm">
@@ -44,7 +44,7 @@ export default function DashboardPage() {
           </Card>
         </Link>
 
-        {/* Total Contact Messages (wrapped with Link) */}
+        {/* Total Contact Messages */}
         <Link href="/landing/contact">
           <Card className="p-4 hover:bg-gray-50 transition">
             <p className="flex items-center gap-2 text-gray-500 text-sm">
@@ -56,22 +56,24 @@ export default function DashboardPage() {
         </Link>
       </div>
 
-      {/* Optional: Profile Quick Info */}
-      <Card className="p-4">
-        <p className="flex items-center gap-2 text-gray-500 text-sm">
-          <UserIcon className="h-5 w-5 text-gray-400" />
-          Logged in as
-        </p>
-        <p className="mt-1">
-          Name:{" "}
-          <span className="font-semibold">
-            {currentUser?.firstName} {currentUser?.lastName}
-          </span>
-        </p>
-        <p className="mt-1">
-          Email: <span className="font-semibold">{currentUser?.email}</span>
-        </p>
-      </Card>
+      {/* Profile Quick Info */}
+      <Link href="/dashboard/profile">
+        <Card className="p-4">
+          <p className="flex items-center gap-2 text-gray-500 text-sm">
+            <UserIcon className="h-5 w-5 text-gray-400" />
+            Logged in as
+          </p>
+          <p className="mt-1">
+            Name:{" "}
+            <span className="font-semibold">
+              {currentUser?.firstName} {currentUser?.lastName}
+            </span>
+          </p>
+          <p className="mt-1">
+            Email: <span className="font-semibold">{currentUser?.email}</span>
+          </p>
+        </Card>
+      </Link>
     </section>
   );
 }
