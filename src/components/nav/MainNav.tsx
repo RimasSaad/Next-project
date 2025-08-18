@@ -24,7 +24,7 @@ export default function MainNav() {
   };
 
   return (
-    <header className="sticky top-0 ">
+    <header className="top-0">
       <div className="mx-auto max-w-3xl px-4">
         <div
           className="mt-4 flex items-center justify-between

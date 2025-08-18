@@ -26,33 +26,40 @@ export default function UserDetailsPage({ params }: PageProps) {
   if (!user) return notFound();
 
   return (
-    <section className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold">User Details</h1>
-        <Link href="/dashboard/users" className="text-sm underline">
-        Back to Users
-        </Link>
-      </div>
-      <div className="text-s text-gray-600">
-        <p>User ID: <span className="font-mono">{user.id}</span></p>
-      </div>
-      {/* Display user details */}
-      <div className="flex items-center gap-4">
-        <img
-          src={user.avatar || "/default-avatar.png"}
-          alt={`${user.firstName} ${user.lastName}`}
-          className="h-20 w-20 rounded-full object-cover"
+    <main className="relative w-full">
+      <section
+          className="
+            fixed inset-0 -z-10
+            bg-cover bg-center
+            pointer-events-none
+          "
+          style={{ backgroundImage: "url('/background.png')" }}
         />
-        <div>
-          <p className="text-lg font-medium">
-            {user.firstName} {user.lastName}
-          </p>
-          <p className="text-gray-600">{user.email}</p>
+      <section className="space-y-6">
+        <div className="flex items-center justify-between">
+          <h1 className="text-2xl font-semibold">User Details</h1>
+          <Link href="/dashboard/users" className="text-sm underline">
+          Back to Users
+          </Link>
         </div>
-      </div>
-
-      
-      
-    </section>
+        <div className="text-s text-gray-600">
+          <p>User ID: <span className="font-mono">{user.id}</span></p>
+        </div>
+        {/* Display user details */}
+        <div className="flex items-center gap-4 bg-white rounded-md">
+          <img
+            src={user.avatar || "/default-avatar.png"}
+            alt={`${user.firstName} ${user.lastName}`}
+            className="h-20 w-20 rounded-full object-cover"
+          />
+          <div>
+            <p className="text-lg font-medium">
+              {user.firstName} {user.lastName}
+            </p>
+            <p className="text-gray-600">{user.email}</p>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }

@@ -69,49 +69,59 @@ export default function OtpPage() {
   };
 
   return (
-    <section className="space-y-6">
-      <h1 className="text-2xl font-semibold">Verify your email</h1>
-      <p className="text-gray-600">
-        We sent you a 6‑digit code. Enter it below to finish signup.
-      </p>
+    <main className="relative w-full">
+      <section
+          className="
+            fixed inset-0 -z-10
+            bg-cover bg-center
+            pointer-events-none
+          "
+          style={{ backgroundImage: "url('/background.png')" }}
+        />
+      <section className="space-y-6">
+        <h1 className="text-2xl font-semibold">Verify your email</h1>
+        <p className="text-gray-600">
+          We sent you a 6‑digit code. Enter it below to finish signup.
+        </p>
 
-      <Card className="p-6 space-y-4">
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          {/* Code input */}
-          <div className="space-y-2">
-            <Label htmlFor="code">Verification code</Label>
-            <Input
-              id="code"
-              inputMode="numeric"
-              maxLength={6}
-              placeholder="123456"
-              {...register("code", { validate: requiredTrim })}
-            />
-            {error && <p className="text-sm text-red-600">{error}</p>}
-          </div>
+        <Card className="p-6 space-y-4">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            {/* Code input */}
+            <div className="space-y-2">
+              <Label htmlFor="code">Verification code</Label>
+              <Input
+                id="code"
+                inputMode="numeric"
+                maxLength={6}
+                placeholder="123456"
+                {...register("code", { validate: requiredTrim })}
+              />
+              {error && <p className="text-sm text-red-600">{error}</p>}
+            </div>
 
-          {/* Actions */}
-          <div className="flex items-center gap-3">
-            <Button type="submit" disabled={isSubmitting}>
-              Verify
-            </Button>
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => router.push("/auth/register")}
-            >
-              Back to register
-            </Button>
-          </div>
-        </form>
-      </Card>
+            {/* Actions */}
+            <div className="flex items-center gap-3">
+              <Button type="submit" disabled={isSubmitting}>
+                Verify
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => router.push("/auth/register")}
+              >
+                Back to register
+              </Button>
+            </div>
+          </form>
+        </Card>
 
-      <p className="text-sm text-gray-600">
-        Already logged in?{" "}
-        <a className="underline" href="/auth/login">
-          Login
-        </a>
-      </p>
-    </section>
+        <p className="text-sm text-gray-600">
+          Already logged in?{" "}
+          <a className="underline" href="/auth/login">
+            Login
+          </a>
+        </p>
+      </section>
+    </main>
   );
 }

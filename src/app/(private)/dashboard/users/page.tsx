@@ -127,63 +127,73 @@ export default function UsersPage() {
   });
 
   return (
-    <section className="space-y-6">
-      <h1 className="text-2xl font-semibold">Registered Users</h1>
-
-      {/* Search box */}
-      <div className="max-w-sm">
-        <input
-          className="w-full rounded-md border px-3 py-2 text-sm"
-          placeholder="Search by name"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
+    <main className="relative w-full">
+      <section
+          className="
+            fixed inset-0 -z-10   
+            bg-cover bg-center
+            pointer-events-none   
+          "
+          style={{ backgroundImage: "url('/background.png')" }}
         />
-      </div>
+      <section className="space-y-6">
+        <h1 className="text-2xl font-semibold">Registered Users</h1>
 
-      {/* Users table */}
-      <Card className="p-4 overflow-x-auto">
-        <table className="min-w-full border border-gray-200 text-sm">
-          <thead>
-            {table.getHeaderGroups().map((hg) => (
-              <tr key={hg.id} className="bg-gray-100">
-                {hg.headers.map((header) => (
-                  <th key={header.id} className="px-4 py-2 border text-left">
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                  </th>
-                ))}
-              </tr>
-            ))}
-          </thead>
+        {/* Search box */}
+        <div className="max-w-sm">
+          <input
+            className="w-full rounded-md border px-3 py-2 text-sm bg-white"
+            placeholder="Search by name"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+        </div>
 
-        <tbody>
-          {table.getRowModel().rows.length === 0 ? (
-            <tr>
-              <td
-                colSpan={table.getAllLeafColumns().length}
-                className="px-4 py-6 text-center text-gray-500 border"
-              >
-                No users found.
-              </td>
-            </tr>
-          ) : (
-            table.getRowModel().rows.map((row) => (
-              <tr key={row.id} className="hover:bg-gray-50">
-                {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id} className="px-4 py-2 border">
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </td>
-                ))}
+        {/* Users table */}
+        <Card className="p-4 overflow-x-auto">
+          <table className="min-w-full border border-gray-200 text-sm">
+            <thead>
+              {table.getHeaderGroups().map((hg) => (
+                <tr key={hg.id} className="bg-gray-100">
+                  {hg.headers.map((header) => (
+                    <th key={header.id} className="px-4 py-2 border text-left">
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext()
+                          )}
+                    </th>
+                  ))}
+                </tr>
+              ))}
+            </thead>
+
+          <tbody>
+            {table.getRowModel().rows.length === 0 ? (
+              <tr>
+                <td
+                  colSpan={table.getAllLeafColumns().length}
+                  className="px-4 py-6 text-center text-gray-500 border"
+                >
+                  No users found.
+                </td>
               </tr>
-            ))
-          )}
-        </tbody>
-        </table>
-      </Card>
-    </section>
+            ) : (
+              table.getRowModel().rows.map((row) => (
+                <tr key={row.id} className="hover:bg-gray-50">
+                  {row.getVisibleCells().map((cell) => (
+                    <td key={cell.id} className="px-4 py-2 border">
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </td>
+                  ))}
+                </tr>
+              ))
+            )}
+          </tbody>
+          </table>
+        </Card>
+      </section>
+    </main>
   );
 }

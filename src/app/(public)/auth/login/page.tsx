@@ -63,56 +63,66 @@ export default function LoginPage() {
   };
 
   return (
-    <section className="space-y-6">
-      <h1 className="text-2xl font-semibold">Login</h1>
-      <p className="text-gray-600">Enter your email and password to continue.</p>
+    <main className="relative w-full">
+      <section
+          className="
+            fixed inset-0 -z-10 
+            bg-cover bg-center
+            pointer-events-none
+          "
+          style={{ backgroundImage: "url('/background.png')" }}
+        />
+      <section className="space-y-6">
+        <h1 className="text-2xl font-semibold">Login</h1>
+        <p className="text-gray-600">Enter your email and password to continue.</p>
 
-      <Card className="p-6 space-y-4">
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          {/* Email */}
-          <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <Input
-              id="email"
-              type="email"
-              autoComplete="email"
-              placeholder="you@example.com"
-              {...register("email", { validate: requiredTrim })}
-            />
-            {errors.email && (
-              <p className="text-sm text-red-600">{errors.email.message}</p>
-            )}
-          </div>
+        <Card className="p-6 space-y-4">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            {/* Email */}
+            <div className="space-y-2">
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                type="email"
+                autoComplete="email"
+                placeholder="you@example.com"
+                {...register("email", { validate: requiredTrim })}
+              />
+              {errors.email && (
+                <p className="text-sm text-red-600">{errors.email.message}</p>
+              )}
+            </div>
 
-          {/* Password */}
-          <div className="space-y-2">
-            <Label htmlFor="password">Password</Label>
-            <Input
-              id="password"
-              type="password"
-              autoComplete="current-password"
-              placeholder="your password"
-              {...register("password", { validate: requiredTrim })}
-            />
-            {errors.password && (
-              <p className="text-sm text-red-600">{errors.password.message}</p>
-            )}
-          </div>
+            {/* Password */}
+            <div className="space-y-2">
+              <Label htmlFor="password">Password</Label>
+              <Input
+                id="password"
+                type="password"
+                autoComplete="current-password"
+                placeholder="your password"
+                {...register("password", { validate: requiredTrim })}
+              />
+              {errors.password && (
+                <p className="text-sm text-red-600">{errors.password.message}</p>
+              )}
+            </div>
 
-          {/* Error (invalid credentials) */}
-          {error && <p className="text-sm text-red-600">{error}</p>}
+            {/* Error (invalid credentials) */}
+            {error && <p className="text-sm text-red-600">{error}</p>}
 
-          {/* Actions */}
-          <div className="flex items-center gap-3">
-            <Button type="submit" disabled={isSubmitting}>
-              Sign in
-            </Button>
-            <Button type="button" variant="outline" onClick={() => router.push("/auth/register")}>
-              Create account
-            </Button>
-          </div>
-        </form>
-      </Card>
-    </section>
+            {/* Actions */}
+            <div className="flex items-center gap-3">
+              <Button type="submit" disabled={isSubmitting}>
+                Sign in
+              </Button>
+              <Button type="button" variant="outline" onClick={() => router.push("/auth/register")}>
+                Create account
+              </Button>
+            </div>
+          </form>
+        </Card>
+      </section>
+    </main>
   );
 }
