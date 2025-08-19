@@ -1,11 +1,7 @@
 // app/landing/page.tsx
 "use client";
-
-import {
-  GlobeAltIcon,
-  AtSymbolIcon,
-  ArrowUpRightIcon,
-} from "@heroicons/react/24/outline";
+import router from "next/router";
+import { Button } from "@/components/ui/button";
 
 export default function LandingPage() {
   return (
@@ -16,7 +12,7 @@ export default function LandingPage() {
           bg-cover bg-center
           pointer-events-none
         "
-        style={{ backgroundImage: "url('/background1.png')" }}
+        style={{ backgroundImage: "url('/background.png')" }}
       />
       <section className="w-full">
         <div className="mx-auto max-w-[900px] px-4 pt-6 text-center">
@@ -37,48 +33,66 @@ export default function LandingPage() {
             </span>
           </h1>
         </div>
+
         {/* 3-column section */}
-        <div className="pt-80">
-        <section className="w-full bg-white py-16">
-          <div className="mx-auto max-w-6xl px-4">
-            <div className="grid grid-cols-[30%_50%_20%] gap-8 items-start">
+        <section className="mt-16 w-full bg-white py-4">
+          <div className="mx-auto max-w-6xl px-4 py-4">
+            <div className="grid grid-cols-[22%_60%_18%] gap-8 items-start">
               
               {/* Column 1 - Avatar */}
-              <div className="flex justify-center">
+              <div className="flex items-center justify-center py-4">
                 <img
                   src="/dewangga-avatar.svg"
                   alt="dewangga avatar"
-                  className="w-40 h-40 rounded-md object-cover bg-slate-200"
+                  className="w-60 h-60 rounded-md object-cover"
                 />
               </div>
 
               {/* Column 2 - Text */}
-              <div className="text-center">
-                <p className="mt-2 text-slate-600 leading-relaxed">
+              <div className="text-center py-8">
+                <p className="mt-8 text-slate-600 leading-relaxed">
                   A <p className="font-bold inline">Product Designer </p>Strategist passionate about designing seamless user journeys through the power of words.
                 </p>
+                <Button
+                  className="mt-10 p-6 rounded-full cursor-pointer"
+                  onClick={() => router.push("/landing/contact")}
+                >
+                  Let’s Connect 
+                </Button>
               </div>
 
               {/* Column 3 - Icon Stack */}
-              <div className="flex flex-col items-center gap-4">
-                <a className="grid h-9 w-9 place-items-center rounded-full border bg-white hover:bg-slate-50">
-                  <img src="/linkedin.svg" alt="LinkedIn" className="h-5 w-5" />
-                </a>
-                <a className="grid h-9 w-9 place-items-center rounded-full border bg-white hover:bg-slate-50">
-                  <img src="/github.svg" alt="GitHub" className="h-5 w-5" />
-                </a>
-                <a className="grid h-9 w-9 place-items-center rounded-full border bg-white hover:bg-slate-50">
-                  <img src="/dribbble.svg" alt="Dribbble" className="h-5 w-5" />
-                </a>
-                <a className="grid h-9 w-9 place-items-center rounded-full border bg-white hover:bg-slate-50">
-                  <img src="/slack.svg" alt="Slack" className="h-5 w-5" />
-                </a>
+              <div className="flex flex-col items-center">
+                <img src="/Social Media.svg" alt="Email" className="h-60" />
               </div>
             </div>
           </div>
         </section>
 
-        </div>
+        {/* Stats Section */}
+        <section className="w-full bg-white py-8">
+          <div className="max-w-[900px] mx-auto flex flex-row justify-between text-center px-60">
+            {/* Stat 1 */}
+            <div>
+              <p className="text-3xl font-bold">400+</p>
+              <p className="text-gray-500">Latest Project</p>
+            </div>
+
+            {/* Stat 2 */}
+            <div>
+              <p className="text-3xl font-bold">22+</p>
+              <p className="text-gray-500">Partnership</p>
+            </div>
+
+            {/* Stat 3 */}
+            <div>
+              <p className="text-3xl font-bold">99%</p>
+              <p className="text-gray-500">User Trusted</p>
+            </div>
+          </div>
+        </section>
+
+
       </section>
     </main>
   );
